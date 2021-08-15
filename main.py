@@ -72,6 +72,12 @@ def checkEducation(text):
                 return True, i.split(" ")[-1]
             elif 'certifications' in i.lower().split(" ") and len(i.lower().split(" ")) == 1:
                 return True, i.split(" ")[-1]
+            elif any("education" in j for j in i.lower().split(" ")) and len(i.lower().split(" ")) == 1: 
+                return True, 'any("education" in j for j in i.lower().split(" ")) '
+            elif any("certifications" in j for j in i.lower().split(" ")) and len(i.lower().split(" ")) == 1:
+                return True, 'any("certifications" in j for j in i.lower().split(" "))'
+            else:
+                return False, '' 
     except IndexError:
         return False, ''
 
@@ -82,6 +88,12 @@ def checkExperience(text):
                 return True, i.split(" ")[-1]
             elif 'projects' in i.lower().split(" ") and len(i.split(" ")) <= 2:
                 return True, i.split(" ")[-1]
+            elif any("experience" in j for j in i.lower().split(" ")) and len(i.split(" ")) <= 2: 
+                return True, any("experience" in j for j in i.lower().split(" "))
+            elif any("projects" in j for j in i.lower().split(" ")) and len(i.split(" ")) <= 2:
+                return True, any("projects" in j for j in i.lower().split(" "))
+            else:
+                return False, ''        
     except IndexError:
         return False, ''
 
@@ -157,7 +169,7 @@ if __name__ == '__main__':
     f.close()
     for i in content.splitlines():
         actionVerbs.append(i.lower())
-    buzzWords = ["highly motivated", "strong leadership", "management skills", "extensive experience", "problem solver", "problem solving", "results-oriented", "hits the ground running", "process improvements", "ambitious", "seasoned", "customer driven", "extensive experience", "vast experience", "thought leader"]
+    buzzWords = ["highly motivated", "strong leadership", "management skills", "extensive experience", "problem solver", "problem solving", "results-oriented", "hits the ground running", "process improvements", "ambitious", "seasoned", "customer driven", "extensive experience", "vast experience", "thought leader", "natural leader", "communication skills", "creative thinker", "savvy"]
     i = 0
     auxList = []
     impactList = []
